@@ -30,7 +30,7 @@ public class ApplicantsService {
         throw new UserNotFound("Not Found");
     }
 
-    public ApplicantsModel POST (ApplicantsModel applicantsModel){
+    public ApplicantsModel POST(ApplicantsModel applicantsModel){
         String encryptedPassword = passwordEncoder.encode(applicantsModel.getPassword());
         applicantsModel.setPassword(encryptedPassword);
         return applicantsRepo.save(applicantsModel);    
@@ -48,11 +48,8 @@ public class ApplicantsService {
         return applicantsRepo.save(existsApplicant);
     }
 
-
     public void DELETEByID(Integer id) throws UserNotFound{
         ApplicantsModel existsApplicant = applicantsRepo.findById(id).orElseThrow(()->new UserNotFound("Not Found"));
         applicantsRepo.delete(existsApplicant);
     }
-
-
 }

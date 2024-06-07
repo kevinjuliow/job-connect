@@ -14,11 +14,9 @@ public class ApplicantDtos {
     private Integer code;
     private List<ApplicantsModel> data;
 
-
     public ApplicantDtos(String status, Integer code, List<ApplicantsModel> data) {
         this.status = status;
         this.code = code;
         this.data = data;
     }
-
 }
