@@ -23,6 +23,9 @@ public class JobApplicantsModel {
     @JoinColumn(name = "id_applicant")
     private ApplicantsModel applicantsModel;
 
+    private String status ;
+
     @Column(name = "apply_date")
     private LocalDate applyDate;
+
 }

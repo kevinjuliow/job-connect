@@ -39,7 +39,10 @@ public class ApplicantsService {
     public ApplicantsModel PUTByID (ApplicantsModel applicantsModel , Integer id) throws UserNotFound {
         ApplicantsModel existsApplicant = applicantsRepo.findById(id).orElseThrow(()->new UserNotFound("Not Found"));
         if (applicantsModel.getEmail() != null && !applicantsModel.getEmail().isEmpty()) existsApplicant.setEmail(applicantsModel.getEmail());
-        if (applicantsModel.getPassword() != null && !applicantsModel.getPassword().isEmpty()) existsApplicant.setPassword(applicantsModel.getPassword());
+        if (applicantsModel.getPassword() != null && !applicantsModel.getPassword().isEmpty()) {
+            String encryptedPassword = passwordEncoder.encode(applicantsModel.getPassword());
+            existsApplicant.setPassword(encryptedPassword);
+        }
         if (applicantsModel.getFull_name() != null && !applicantsModel.getFull_name().isEmpty()) existsApplicant.setFull_name(applicantsModel.getFull_name());
         if (applicantsModel.getAddress() != null && !applicantsModel.getAddress().isEmpty()) existsApplicant.setAddress(applicantsModel.getAddress());
         if (applicantsModel.getPhone() != null && !applicantsModel.getPhone().isEmpty()) existsApplicant.setPhone(applicantsModel.getPhone());
