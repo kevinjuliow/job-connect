@@ -17,11 +17,20 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/jobconnect")
+@RequestMapping("/api/jobconnect/companies")
 public class CompaniesController {
 
     @Autowired
     private CompaniesService companiesService;
+
+    @GetMapping
+    public ResponseEntity<?> GETAll() {
+        if (companiesService.GETAll().isEmpty()) {
+            return ResponseEntity.status(204).body(new CompanyDtos("NO CONTENT", 204, null));
+        }
+        List<CompaniesModel> companiesLists = companiesService.GETAll();
+        return ResponseEntity.status(200).body(new CompanyDtos("OK", 200, companiesLists));
+    }
 
     @GetMapping("/{name}")
     public ResponseEntity<?> GETById(@PathVariable String name) {
@@ -30,7 +39,7 @@ public class CompaniesController {
             List<CompaniesModel> companyList = Collections.singletonList(existsCompany);
             return ResponseEntity.status(200).body(new CompanyDtos("OK", 200, companyList));
         } catch (CompanyNotFound err) {
-            return ResponseEntity.status(404).body(new CompanyDtos("NOT FOUND", 200, null));
+            return ResponseEntity.status(404).body(new CompanyDtos("NOT FOUND", 404, null));
         }
     }
 
@@ -41,7 +50,7 @@ public class CompaniesController {
         }
         CompaniesModel addedCompanies = companiesService.POST(body);
         List<CompaniesModel> companyList = Collections.singletonList(addedCompanies);
-        return ResponseEntity.status(200).body(new CompanyDtos("OK", 200, companyList));
+        return ResponseEntity.status(201).body(new CompanyDtos("CREATED", 201, companyList));
     }
 
     @PutMapping("/{id}")
