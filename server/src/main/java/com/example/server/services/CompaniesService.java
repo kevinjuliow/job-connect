@@ -20,7 +20,7 @@ public class CompaniesService {
     }
 
     public CompaniesModel GETByUsername(String name) throws CompanyNotFound {
-        Optional<CompaniesModel> existsCompany = companiesRepo.findCompanyByUsername(name);
+        Optional<CompaniesModel> existsCompany = companiesRepo.findCompanyByName(name);
         if (existsCompany.isPresent()) {
             return existsCompany.get();
         }
