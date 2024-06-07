@@ -25,4 +25,28 @@ public class ApplicantsService {
         }
         throw new UserNotFound("Not Found");
     }
+
+    public ApplicantsModel POST (ApplicantsModel applicantsModel){
+        return applicantsRepo.save(applicantsModel);
+    }
+
+    public ApplicantsModel PUTByID (ApplicantsModel applicantsModel , Integer id) throws UserNotFound {
+        ApplicantsModel existsApplicant = applicantsRepo.findById(id).orElseThrow(()->new UserNotFound("Not Found"));
+        if (applicantsModel.getEmail() != null && !applicantsModel.getEmail().isEmpty()) existsApplicant.setEmail(applicantsModel.getEmail());
+        if (applicantsModel.getPassword() != null && !applicantsModel.getPassword().isEmpty()) existsApplicant.setPassword(applicantsModel.getPassword());
+        if (applicantsModel.getFull_name() != null && !applicantsModel.getFull_name().isEmpty()) existsApplicant.setFull_name(applicantsModel.getFull_name());
+        if (applicantsModel.getAddress() != null && !applicantsModel.getAddress().isEmpty()) existsApplicant.setAddress(applicantsModel.getAddress());
+        if (applicantsModel.getPhone() != null && !applicantsModel.getPhone().isEmpty()) existsApplicant.setPhone(applicantsModel.getPhone());
+        if (applicantsModel.getCv() != null && !applicantsModel.getCv().isEmpty()) existsApplicant.setCv(applicantsModel.getCv());
+
+        return applicantsRepo.save(existsApplicant);
+    }
+
+
+    public void DELETEByID(Integer id) throws UserNotFound{
+        ApplicantsModel existsApplicant = applicantsRepo.findById(id).orElseThrow(()->new UserNotFound("Not Found"));
+        applicantsRepo.delete(existsApplicant);
+    }
+
+
 }
