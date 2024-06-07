@@ -13,12 +13,12 @@ import java.util.Optional;
 @Service
 public class ApplicantsService {
     @Autowired
-    private ApplicantsRepo applicantsRepo ;
+    private ApplicantsRepo applicantsRepo;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public List<ApplicantsModel> GETAll(){
+    public List<ApplicantsModel> GETAll() {
         return applicantsRepo.findAll();
     }
 

@@ -10,9 +10,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class ApplicantDtos {
-    private String status ;
-    private Integer code ;
-    private List<ApplicantsModel> data ;
+    private String status;
+    private Integer code;
+    private List<ApplicantsModel> data;
 
 
     public ApplicantDtos(String status, Integer code, List<ApplicantsModel> data) {
