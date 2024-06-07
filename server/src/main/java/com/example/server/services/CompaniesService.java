@@ -41,30 +41,17 @@ public class CompaniesService {
     public CompaniesModel PUTByID(Integer id, CompaniesModel company) throws CompanyNotFound {
         CompaniesModel isExist = companiesRepo.findById(id)
                 .orElseThrow(() -> new CompanyNotFound("Cannot update. Company isn't found with id " + id));
-        if (company.getName() != null && !company.getName().isEmpty()) {
-            isExist.setName(company.getName());
-        }
-        if (company.getEmail() != null && !company.getEmail().isEmpty()) {
-            isExist.setEmail(company.getEmail());
-        }
+        if (company.getName() != null && !company.getName().isEmpty()) { isExist.setName(company.getName()); }
+        if (company.getEmail() != null && !company.getEmail().isEmpty()) { isExist.setEmail(company.getEmail()); }
         if (company.getPassword() != null && !company.getPassword().isEmpty()) {
-            isExist.setPassword(company.getPassword());
+            String encryptedPassword = passwordEncoder.encode(company.getPassword());
+            isExist.setPassword(encryptedPassword);
         }
-        if (company.getAddress() != null && !company.getAddress().isEmpty()) {
-            isExist.setAddress(company.getAddress());
-        }
-        if (company.getCountry() != null && !company.getCountry().isEmpty()) {
-            isExist.setCountry(company.getCountry());
-        }
-        if (company.getPhone() != null && !company.getPhone().isEmpty()) {
-            isExist.setPhone(company.getPhone());
-        }
-        if (company.getLogo() != null && !company.getLogo().isEmpty()) {
-            isExist.setLogo(company.getLogo());
-        }
-        if (company.getWebsite() != null && !company.getWebsite().isEmpty()) {
-            isExist.setWebsite(company.getWebsite());
-        }
+        if (company.getAddress() != null && !company.getAddress().isEmpty()) { isExist.setAddress(company.getAddress()); }
+        if (company.getCountry() != null && !company.getCountry().isEmpty()) { isExist.setCountry(company.getCountry()); }
+        if (company.getPhone() != null && !company.getPhone().isEmpty()) { isExist.setPhone(company.getPhone()); }
+        if (company.getLogo() != null && !company.getLogo().isEmpty()) { isExist.setLogo(company.getLogo()); }
+        if (company.getWebsite() != null && !company.getWebsite().isEmpty()) { isExist.setWebsite(company.getWebsite()); }
 
         return companiesRepo.save(isExist);
     }
