@@ -47,7 +47,7 @@ public class JobsController {
         if (e.hasErrors()) return ResponseEntity.status(400).body(new JobDtos("Bad Request" , 400 , null));
         JobsModel addedJobs = jobsService.POST(body);
         List<JobsModel> jobLists = Collections.singletonList(addedJobs);
-        return ResponseEntity.status(200).body(new JobDtos("OK", 200, jobLists));
+        return ResponseEntity.status(201).body(new JobDtos("CREATED", 201, jobLists));
     }
 
     @PutMapping("/{id}")

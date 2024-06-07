@@ -38,7 +38,7 @@ public class JobApplicantsController {
         }
         JobApplicantsModel addedJobApplicants = jobApplicantsService.POST(body);
         List<JobApplicantsModel> jobApplicantList = Collections.singletonList(addedJobApplicants);
-        return ResponseEntity.status(200).body(new JobApplicantDtos("OK", 200, jobApplicantList));
+        return ResponseEntity.status(201).body(new JobApplicantDtos("CREATED", 201, jobApplicantList));
     }
 
     @PutMapping("/{id}")

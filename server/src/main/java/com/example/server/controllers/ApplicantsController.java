@@ -48,7 +48,7 @@ public class ApplicantsController {
         }
         ApplicantsModel addedApplicants = applicantsService.POST(body);
         List<ApplicantsModel> applicantList = Collections.singletonList(addedApplicants);
-        return ResponseEntity.status(200).body(new ApplicantDtos("OK", 200, applicantList));
+        return ResponseEntity.status(201).body(new ApplicantDtos("CREATED", 201, applicantList));
     }
 
     @PutMapping("/{id}")
