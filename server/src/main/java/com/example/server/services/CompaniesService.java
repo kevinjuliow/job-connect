@@ -1,9 +1,11 @@
 package com.example.server.services;
 
 import com.example.server.exception.CompanyNotFound;
+import com.example.server.models.ApplicantsModel;
 import com.example.server.models.CompaniesModel;
 import com.example.server.repo.CompaniesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,11 +17,14 @@ public class CompaniesService {
     @Autowired
     private CompaniesRepo companiesRepo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public List<CompaniesModel> GETAll() {
         return companiesRepo.findAll();
     }
 
-    public CompaniesModel GETByUsername(String name) throws CompanyNotFound {
+    public CompaniesModel GETByName(String name) throws CompanyNotFound {
         Optional<CompaniesModel> existsCompany = companiesRepo.findCompanyByName(name);
         if (existsCompany.isPresent()) {
             return existsCompany.get();
@@ -27,7 +32,13 @@ public class CompaniesService {
         throw new CompanyNotFound("Company isn't found");
     }
 
-    public CompaniesModel PUTbyID(Integer id, CompaniesModel company) throws CompanyNotFound {
+    public CompaniesModel POST(CompaniesModel companiesModel){
+        String encryptedPassword = passwordEncoder.encode(companiesModel.getPassword());
+        companiesModel.setPassword(encryptedPassword);
+        return companiesRepo.save(companiesModel);
+    }
+
+    public CompaniesModel PUTByID(Integer id, CompaniesModel company) throws CompanyNotFound {
         CompaniesModel isExist = companiesRepo.findById(id)
                 .orElseThrow(() -> new CompanyNotFound("Cannot update. Company isn't found with id " + id));
         if (company.getName() != null && !company.getName().isEmpty()) {

@@ -19,52 +19,59 @@ import java.util.List;
 @RequestMapping("/api/jobconnect/applicants")
 public class ApplicantsController {
     @Autowired
-    private ApplicantsService applicantsService ;
+    private ApplicantsService applicantsService;
 
     @GetMapping
-    public ResponseEntity<?> GETAll(){
-        if (applicantsService.GETAll().isEmpty()){
-            return ResponseEntity.status(204).body(new ApplicantDtos("No Content" , 204 ,  null));
+    public ResponseEntity<?> GETAll() {
+        if (applicantsService.GETAll().isEmpty()) {
+            return ResponseEntity.status(204).body(new ApplicantDtos("NO CONTENT", 204, null));
         }
         List<ApplicantsModel> applicantsLists = applicantsService.GETAll();
-        return ResponseEntity.status(200).body(new ApplicantDtos("OK" , 200 , applicantsLists));
+        return ResponseEntity.status(200).body(new ApplicantDtos("OK", 200, applicantsLists));
     }
+
     @GetMapping("/{id}")
-    public ResponseEntity<?> GETByID (@PathVariable Integer id){
-        try{
+    public ResponseEntity<?> GETByID(@PathVariable Integer id) {
+        try {
             ApplicantsModel existsApplicant = applicantsService.GETByID(id);
             List<ApplicantsModel> applicantList = Collections.singletonList(existsApplicant);
             return ResponseEntity.status(200).body(new ApplicantDtos("OK", 200, applicantList));
-        }catch (UserNotFound err){
-            return ResponseEntity.status(404).body(new ApplicantDtos("Not Found" , 404 , null));
+        } catch (UserNotFound err) {
+            return ResponseEntity.status(404).body(new ApplicantDtos("NOT FOUND", 404, null));
         }
     }
+
     @PostMapping
-    public ResponseEntity<?> POST (@RequestBody @Valid ApplicantsModel body , Errors e){
-        if (e.hasErrors()) return ResponseEntity.status(400).body(new ApplicantDtos("Bad Request" , 400 , ((List<ApplicantsModel>) null)));
+    public ResponseEntity<?> POST(@RequestBody @Valid ApplicantsModel body, Errors e) {
+        if (e.hasErrors()) {
+            return ResponseEntity.status(400).body(new ApplicantDtos("BAD REQUEST", 400, ((List<ApplicantsModel>) null)));
+        }
         ApplicantsModel addedApplicants = applicantsService.POST(body);
         List<ApplicantsModel> applicantList = Collections.singletonList(addedApplicants);
         return ResponseEntity.status(200).body(new ApplicantDtos("OK", 200, applicantList));
     }
+
     @PutMapping("/{id}")
-    public ResponseEntity<?> PUT (@RequestBody @Valid ApplicantsModel body , @PathVariable Integer id , Errors e){
-        if (e.hasErrors()) return ResponseEntity.status(400).body(new ApplicantDtos("Bad Request" , 400 , ((List<ApplicantsModel>) null)));
-        try{
-            ApplicantsModel updated = applicantsService.PUTByID(body , id);
+    public ResponseEntity<?> PUT(@RequestBody @Valid ApplicantsModel body, @PathVariable Integer id, Errors e) {
+        if (e.hasErrors()) {
+            return ResponseEntity.status(400).body(new ApplicantDtos("BAD REQUEST", 400, ((List<ApplicantsModel>) null)));
+        }
+        try {
+            ApplicantsModel updated = applicantsService.PUTByID(body, id);
             List<ApplicantsModel> applicantList = Collections.singletonList(updated);
             return ResponseEntity.status(200).body(new ApplicantDtos("OK", 200, applicantList));
-        }catch (UserNotFound err){
-            return ResponseEntity.status(404).body(new ApplicantDtos("Not Found" , 404 , null));
-        }
-    }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> DELETE (@PathVariable Integer id){
-        try{
-            applicantsService.DELETEByID(id);
-            return ResponseEntity.status(200).body(new ApplicantDtos("OK" , 200 ,  null));
-        }catch (UserNotFound err){
-            return ResponseEntity.status(404).body(new ApplicantDtos("Not Found" , 404 ,  null));
+        } catch (UserNotFound err) {
+            return ResponseEntity.status(404).body(new ApplicantDtos("NOT FOUND", 404, null));
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> DELETE(@PathVariable Integer id) {
+        try {
+            applicantsService.DELETEByID(id);
+            return ResponseEntity.status(200).body(new ApplicantDtos("OK", 200, null));
+        } catch (UserNotFound err) {
+            return ResponseEntity.status(404).body(new ApplicantDtos("NOT FOUND", 404, null));
+        }
+    }
 }
