@@ -33,6 +33,6 @@ public class JobsModel {
     @Column(nullable = false)
     private String jobType;
 
-    @ManyToMany(mappedBy = "jobApplicants")
-    private Set<ApplicantsModel> applicants = new HashSet<>();
+//    @ManyToMany(mappedBy = "jobApplicants")
+//    private Set<ApplicantsModel> applicants = new HashSet<>();
 }

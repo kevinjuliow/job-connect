@@ -13,7 +13,7 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @Data
-@Table(schema = "applicants")
+@Table(name = "applicants")
 public class ApplicantsModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,11 +40,11 @@ public class ApplicantsModel {
     @Column
     private String cv;
 
-    @ManyToMany
-    @JoinTable(
-            name = "job_applicants",
-            joinColumns = @JoinColumn(name = "id_applicant"),
-            inverseJoinColumns = @JoinColumn(name = "id_job")
-    )
-    private Set<JobsModel> jobApplicants = new HashSet<>();
+//    @ManyToMany
+//    @JoinTable(
+//            name = "job_applicants",
+//            joinColumns = @JoinColumn(name = "id_applicant"),
+//            inverseJoinColumns = @JoinColumn(name = "id_job")
+//    )
+//    private Set<JobsModel> jobApplicants = new HashSet<>();
 }
