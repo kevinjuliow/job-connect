@@ -28,6 +28,6 @@ public class ApplicantsModel {
     private LocalDate birth_date ;
     @Column(nullable = false, length = 20)
     private String phone ;
-    @Column(length = 255)
+    @Column
     private String cv ;
 }
