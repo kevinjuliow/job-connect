@@ -11,6 +11,7 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor
 @Data
+@Table(schema = "applicants")
 public class ApplicantsModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
