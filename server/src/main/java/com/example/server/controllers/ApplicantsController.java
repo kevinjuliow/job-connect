@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -22,7 +24,7 @@ public class ApplicantsController {
     @GetMapping
     public ResponseEntity<?> GETAll(){
         if (applicantsService.GETAll().isEmpty()){
-            return ResponseEntity.status(204).body(new ApplicantDtos("No Content" , 204 , (List<ApplicantsModel>) null));
+            return ResponseEntity.status(204).body(new ApplicantDtos("No Content" , 204 ,  null));
         }
         List<ApplicantsModel> applicantsLists = applicantsService.GETAll();
         return ResponseEntity.status(200).body(new ApplicantDtos("OK" , 200 , applicantsLists));
@@ -31,34 +33,37 @@ public class ApplicantsController {
     public ResponseEntity<?> GETByID (@PathVariable Integer id){
         try{
             ApplicantsModel existsApplicant = applicantsService.GETByID(id);
-            return ResponseEntity.status(200).body(new ApplicantDtos("OK" , 200 , existsApplicant));
+            List<ApplicantsModel> applicantList = Collections.singletonList(existsApplicant);
+            return ResponseEntity.status(200).body(new ApplicantDtos("OK", 200, applicantList));
         }catch (UserNotFound err){
-            return ResponseEntity.status(404).body(new ApplicantDtos("Not Found" , 404 , ((ApplicantsModel) null)));
+            return ResponseEntity.status(404).body(new ApplicantDtos("Not Found" , 404 , null));
         }
     }
     @PostMapping
     public ResponseEntity<?> POST (@RequestBody @Valid ApplicantsModel body , Errors e){
         if (e.hasErrors()) return ResponseEntity.status(400).body(new ApplicantDtos("Bad Request" , 400 , ((List<ApplicantsModel>) null)));
         ApplicantsModel addedApplicants = applicantsService.POST(body);
-        return ResponseEntity.status(200).body(new ApplicantDtos("OK" , 200 , addedApplicants));
+        List<ApplicantsModel> applicantList = Collections.singletonList(addedApplicants);
+        return ResponseEntity.status(200).body(new ApplicantDtos("OK", 200, applicantList));
     }
     @PutMapping("/{id}")
     public ResponseEntity<?> PUT (@RequestBody @Valid ApplicantsModel body , @PathVariable Integer id , Errors e){
         if (e.hasErrors()) return ResponseEntity.status(400).body(new ApplicantDtos("Bad Request" , 400 , ((List<ApplicantsModel>) null)));
         try{
             ApplicantsModel updated = applicantsService.PUTByID(body , id);
-            return ResponseEntity.status(200).body(new ApplicantDtos("OK" , 200 , updated));
+            List<ApplicantsModel> applicantList = Collections.singletonList(updated);
+            return ResponseEntity.status(200).body(new ApplicantDtos("OK", 200, applicantList));
         }catch (UserNotFound err){
-            return ResponseEntity.status(404).body(new ApplicantDtos("Not Found" , 404 , ((List<ApplicantsModel>) null)));
+            return ResponseEntity.status(404).body(new ApplicantDtos("Not Found" , 404 , null));
         }
     }
     @DeleteMapping
     public ResponseEntity<?> DELETE (@PathVariable Integer id){
         try{
             applicantsService.DELETEByID(id);
-            return ResponseEntity.status(200).body(new ApplicantDtos("OK" , 200 , ((ApplicantsModel) null)));
+            return ResponseEntity.status(200).body(new ApplicantDtos("OK" , 200 ,  null));
         }catch (UserNotFound err){
-            return ResponseEntity.status(404).body(new ApplicantDtos("Not Found" , 404 , ((List<ApplicantsModel>) null)));
+            return ResponseEntity.status(404).body(new ApplicantDtos("Not Found" , 404 ,  null));
         }
     }
 

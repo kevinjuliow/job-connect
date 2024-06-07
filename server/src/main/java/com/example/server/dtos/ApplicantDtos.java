@@ -13,7 +13,7 @@ public class ApplicantDtos {
     private String status ;
     private Integer code ;
     private List<ApplicantsModel> data ;
-    private ApplicantsModel model ;
+
 
     public ApplicantDtos(String status, Integer code, List<ApplicantsModel> data) {
         this.status = status;
@@ -21,9 +21,4 @@ public class ApplicantDtos {
         this.data = data;
     }
 
-    public ApplicantDtos(String status, Integer code , ApplicantsModel model) {
-        this.status = status;
-        this.code = code;
-        this.model = model;
-    }
 }
