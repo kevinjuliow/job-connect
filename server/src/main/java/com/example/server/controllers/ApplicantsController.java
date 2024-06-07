@@ -57,7 +57,7 @@ public class ApplicantsController {
             return ResponseEntity.status(404).body(new ApplicantDtos("Not Found" , 404 , null));
         }
     }
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> DELETE (@PathVariable Integer id){
         try{
             applicantsService.DELETEByID(id);
