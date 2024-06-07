@@ -4,6 +4,7 @@ import com.example.server.exception.UserNotFound;
 import com.example.server.models.ApplicantsModel;
 import com.example.server.repo.ApplicantsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,9 @@ import java.util.Optional;
 public class ApplicantsService {
     @Autowired
     private ApplicantsRepo applicantsRepo ;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public List<ApplicantsModel> GETAll(){
         return applicantsRepo.findAll();
@@ -27,7 +31,9 @@ public class ApplicantsService {
     }
 
     public ApplicantsModel POST (ApplicantsModel applicantsModel){
-        return applicantsRepo.save(applicantsModel);
+        String encryptedPassword = passwordEncoder.encode(applicantsModel.getPassword());
+        applicantsModel.setPassword(encryptedPassword);
+        return applicantsRepo.save(applicantsModel);    
     }
 
     public ApplicantsModel PUTByID (ApplicantsModel applicantsModel , Integer id) throws UserNotFound {
