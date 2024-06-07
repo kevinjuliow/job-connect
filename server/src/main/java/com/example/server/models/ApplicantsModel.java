@@ -14,18 +14,18 @@ import java.util.Date;
 public class ApplicantsModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_applicant;
+    private Integer id_applicant;
 
-    @Column(length = 255)
+    @Column(nullable = false, unique = true)
     private String email ;
-    @Column(length = 255)
+    @Column(nullable = false)
     private String password ;
-    @Column(length = 512)
+    @Column(length = 512 , nullable = false)
     private String full_name;
     @Column(length = 512)
     private String address;
     private LocalDate birth_date ;
-    @Column(length = 20)
+    @Column(nullable = false, length = 20)
     private String phone ;
     @Column(length = 255)
     private String cv ;
