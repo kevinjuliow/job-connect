@@ -1,8 +1,8 @@
 spring :
   datasource :
     url : jdbc:mysql://localhost:3306/job_connect
-    username : kevin
-    password : kevin
+    username : developer
+    password : secretdevpass
   jpa:
     hibernate:
       ddl-auto: update
