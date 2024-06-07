@@ -16,5 +16,4 @@ public class ApplicantsModel {
     @Column(length = 50)
     private String email ;
 
-    
 }
