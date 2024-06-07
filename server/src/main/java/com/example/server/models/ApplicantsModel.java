@@ -1,10 +1,7 @@
 package com.example.server.models;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +13,8 @@ public class ApplicantsModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_applicant;
 
+    @Column(length = 50)
     private String email ;
 
-
+    
 }
