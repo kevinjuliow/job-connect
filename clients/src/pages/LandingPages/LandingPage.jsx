@@ -3,12 +3,12 @@ import Reviews from './Reviews'
 import About from './About'
 import Nav from '../../components/navigation/Nav'
 import { useContext } from 'react'
-import AppContext from '../../context/ContextProvider'
+import {AppContext} from '../../context/ContextProvider'
 
 const LandingPage = () => {
-  // const {auth} = useContext(AppContext)
+  const { auth } = useContext(AppContext)
   
-  // console.log(auth);
+  console.log(auth);
   return (
     <>
       <Nav/>

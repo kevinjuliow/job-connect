@@ -1,20 +1,31 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Auth/Login"
 import LandingPage from "./pages/LandingPages/LandingPage"
-import ContextProvider from "./context/ContextProvider";
-// import Explore from "./pages/ExplorePages/Explore"
+import { useContext, useEffect } from "react";
+import { AppContext } from "./context/ContextProvider";
+import Explore from "./pages/ExplorePages/Explore";
 
 function App() {
+  const { auth } = useContext(AppContext)
+
+  useEffect(()=>{
+    console.log(auth)
+  } , [auth])
+  
+  const isAuthenticated = Object.keys(auth).length === 0;
+  console.log(auth);
+
   return (
-    <ContextProvider>
+    <>
       <Router>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={isAuthenticated? <LandingPage /> : <Explore />} />
           <Route path="/login" element={<Login/>}/>
           {/* <Route path="/explore" element={<Explore/>} /> */}
         </Routes>
       </Router>
-    </ContextProvider>
+    </>
+   
   );
 }
 

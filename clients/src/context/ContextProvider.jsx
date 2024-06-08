@@ -1,18 +1,21 @@
 import  { createContext, useState } from 'react'
 import PropTypes from 'prop-types';
 
+export const AppContext = createContext(null); 
 
-const AppContext = createContext(null); 
+const ContextProvider = ({children}) => {
+  const [auth, setAuth] = useState({})
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-
-const ContextProvider = (props) => {
-
-  const [auth , setAuth] = useState({})
-
-  const value = {auth , setAuth}
+  const value = { 
+    auth,
+    setAuth,
+    isLoggedIn,
+    setIsLoggedIn
+  }
   return (
     <AppContext.Provider value={value}>
-      {props.children}
+      {children}
     </AppContext.Provider>
   )
 }
