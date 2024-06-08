@@ -1,19 +1,27 @@
 import React, { useState } from "react";
 import Wave from "../../assets/imgs/wave2.png"
+import Spinner from "../../components/loading/Spinner"
 
 
 const Login = () => {
-  // const [userInput , setUserInput] = useState({});
+  const [user , setUser] = useState([])
+  const [isVerifying , setIsVerifying] = useState(false);
   
-  // const onSubmit = async () => {
-
-  // }
+  const onSubmit = async () => {
+    try {
+      setIsVerifying(true);
+        
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    
+    }};
   return (
     <div className="h-screen overflow-y-hidden" style={{ backgroundImage: `url(${Wave})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center center', backgroundSize: 'cover', backgroundAttachment :'fixed'}}>
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 ">
 
         <div className="sm:mx-auto border border-gray-300  w-[500px] p-20 rounded-xl bg-white backdrop-blur-md bg-opacity-85">
-          <div className="mb-10 sm:mx-auto sm:w-full sm:max-w-sm ">
+          {isVerifying ? <Spinner /> : (<>
+            <div className="mb-10 sm:mx-auto sm:w-full sm:max-w-sm ">
             <h1 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
               JobConnect
             </h1>
@@ -65,7 +73,7 @@ const Login = () => {
             <div>
               <button
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                
+                onClick={onSubmit}
               >
                 Sign in
               </button>
@@ -82,6 +90,7 @@ const Login = () => {
             </a>
             
           </p>
+          </>)}
         </div>
       </div>
       
@@ -89,4 +98,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login

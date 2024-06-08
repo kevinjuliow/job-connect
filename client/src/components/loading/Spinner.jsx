@@ -1,6 +1,6 @@
 import React from "react";
 
-const spinner = () => {
+const Spinner = () => {
   return (
   
     <div role="status" className="flex flex-col items-center">
@@ -12,4 +12,4 @@ const spinner = () => {
   );
 };
 
-export default spinner;
+export default Spinner;

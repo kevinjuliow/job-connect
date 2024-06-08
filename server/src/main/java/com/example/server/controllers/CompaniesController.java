@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/jobconnect/companies")
+@CrossOrigin
 public class CompaniesController {
 
     @Autowired
