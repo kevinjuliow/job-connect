@@ -3,7 +3,7 @@ import { Link as ReactScroll } from 'react-scroll'
 
 const Nav = () => {
   return (
-    <nav class="backdrop-blur-md bg-white bg-opacity-75 fixed w-full z-20 top-0 start-0 border-b border-gray-200">
+    <nav className="backdrop-blur-md bg-white bg-opacity-75 fixed w-full z-20 top-0 start-0 border-b border-gray-200">
       <div className="max-w-screen-lg flex flex-wrap items-center justify-between mx-auto p-4">
         <div>
           <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse text-black opacity-90 font-bold">

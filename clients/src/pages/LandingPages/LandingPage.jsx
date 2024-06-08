@@ -1,10 +1,14 @@
-import React from 'react'
 import Home from './Home'
 import Reviews from './Reviews'
 import About from './About'
 import Nav from '../../components/navigation/Nav'
+import { useContext } from 'react'
+import AppContext from '../../context/ContextProvider'
 
 const LandingPage = () => {
+  // const {auth} = useContext(AppContext)
+  
+  // console.log(auth);
   return (
     <>
       <Nav/>

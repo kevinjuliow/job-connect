@@ -1,4 +1,3 @@
-import React from "react";
 import { FlipWords } from "../../components/ui/FlipWords.tsx";
 import Images from "../../assets/imgs/landing-image.svg";
 

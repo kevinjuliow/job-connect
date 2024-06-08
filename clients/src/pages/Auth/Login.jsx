@@ -1,20 +1,31 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import Wave from "../../assets/imgs/wave2.png"
 import Spinner from "../../components/loading/Spinner"
+import axios from "axios";
+import AppContext from "../../context/ContextProvider";
 
 
 const Login = () => {
-  const [user , setUser] = useState([])
   const [isVerifying , setIsVerifying] = useState(false);
+  // const {setAuth} = useContext(AppContext)
   
   const onSubmit = async () => {
+    setIsVerifying(true)
     try {
-      setIsVerifying(true);
-        
+    const resp = await axios.post("http://localhost:8000/api/jobconnect/auth" , {
+        "email": document.querySelector('#email').value,
+        "password": document.querySelector('#password').value
+    })
+
+    // setAuth(resp.data);
+
     } catch (error) {
-      console.error("Error submitting form:", error);
-    
-    }};
+      console.error("Error during authentication:", error);
+    } finally {
+      setIsVerifying(false);
+      window.location.href = "/"
+    }
+  };
   return (
     <div className="h-screen overflow-y-hidden" style={{ backgroundImage: `url(${Wave})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center center', backgroundSize: 'cover', backgroundAttachment :'fixed'}}>
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 ">
