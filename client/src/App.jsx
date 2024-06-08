@@ -1,19 +1,19 @@
-import "./App.css";
-import Nav from "./components/navigation/Nav";
+import "./App.css"
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/LandingPages/Home";
-import AppContext from "./context/AppContext";
+import AppContext from "./context/AppContext"
 import Login from "./pages/Auth/Login"
-import LandingPage from "./pages/LandingPages/LandingPage";
+import LandingPage from "./pages/LandingPages/LandingPage"
+import Explore from "./pages/ExplorePages/Explore"
+
 function App() {
   return (
     <AppContext>
       <Router>
-        <Nav />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login/>}/>
+          <Route path="/explore" element={<Explore/>} />
         </Routes>
       </Router>
     </AppContext>

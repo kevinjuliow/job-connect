@@ -5,7 +5,7 @@ import Images from "../../assets/imgs/landing-image.svg";
 const Home = () => {
   const words = ["Future", "Career", "Goals", "Dreams", "Jobs"];
   return (
-    <div className="h-[700px] flex justify-center w-[1024px] mx-auto">
+    <div className="h-[40rem] flex justify-center mx-auto">
       <div className="text-[40px] mx-auto font-bold tracking-tight mt-24 relative opacity-85">
         Empowering Your
         <span className="bg-gradient-to-r from-blue-500 via-purple-700 to-red-500 text-transparent bg-clip-text ml-2">
@@ -20,7 +20,6 @@ const Home = () => {
       </div>
       <div className="absolute top-[180px] left-[180px] flex mt-10 w-2/3">
         <img src={Images} alt="/" className="w-1/2 " />
-
         <div className="flex flex-col items-center gap-8">
           <p className="text-gray-500">
             We build website for your business that actually converts.

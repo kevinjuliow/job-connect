@@ -20,14 +20,14 @@ const Nav = () => {
         </button>
 
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="text-black opacity-90 font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-white dark:border-gray-700">
+          <ul className="text-black opacity-90 font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:border-gray-700">
             <li>
               <ReactScroll
                 className="explore-btn cursor-pointer hover:text-purple-500"
                 to="home-page"
                 smooth={true}
                 offset={-120}
-                duration={500}
+                duration={100}
                 >Home
               </ReactScroll>
             </li>
@@ -37,7 +37,7 @@ const Nav = () => {
                 to="reviews-page"
                 smooth={true}
                 offset={-120}
-                duration={500}
+                duration={100}
                 >Reviews
               </ReactScroll>
             </li>
@@ -47,7 +47,7 @@ const Nav = () => {
                 to="about-page"
                 smooth={true}
                 offset={-120}
-                duration={500}
+                duration={100}
                 >About
               </ReactScroll>
             </li>
