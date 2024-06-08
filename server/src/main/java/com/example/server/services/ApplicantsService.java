@@ -33,7 +33,7 @@ public class ApplicantsService {
     public ApplicantsModel POST(ApplicantsModel applicantsModel){
         String encryptedPassword = passwordEncoder.encode(applicantsModel.getPassword());
         applicantsModel.setPassword(encryptedPassword);
-        return applicantsRepo.save(applicantsModel);    
+        return applicantsRepo.save(applicantsModel);
     }
 
     public ApplicantsModel PUTByID (ApplicantsModel applicantsModel , Integer id) throws UserNotFound {
