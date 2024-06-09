@@ -1,30 +1,28 @@
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import Wave from "../../assets/imgs/wave2.png";
 import Spinner from "../../components/loading/Spinner";
 import axios from "axios";
-import { AppContext } from "../../context/ContextProvider";
 
 const Login = () => {
   const [isVerifying, setIsVerifying] = useState(false);
-  const { auth, setAuth } = useContext(AppContext);
-
-  useEffect(() => {}, [auth]);
 
   const onSubmit = async () => {
     setIsVerifying(true);
     try {
-      await axios
-        .post("https://s0217920-8000.asse.devtunnels.ms/api/jobconnect/auth", {
-          email: document.querySelector("#email").value,
-          password: document.querySelector("#password").value,
-        })
-        .then((e) => {
-          e.data.companies == null
-            ? setAuth(e.data.applicants)
-            : setAuth(e.data.companies);
-        });
+      const response = await axios
+        .post("http://localhost:8000/api/jobconnect/auth", {
+        // .post("https://s0217920-8000.asse.devtunnels.ms/api/jobconnect/auth", {
+        email: document.querySelector("#email").value,
+        password: document.querySelector("#password").value,
+      });
 
-        window.location.href = "/";
+      const chosenData = response.data.companies == null ? response.data.applicants : response.data.companies
+      
+      // Storing data in Local Storage and Session Storage
+      console.log(chosenData)
+      sessionStorage.setItem('auth', JSON.stringify(chosenData))
+      
+      window.location.href = "/";
     } catch (error) {
       if (error.response && error.response.status === 401) {
         setIsVerifying(false);
