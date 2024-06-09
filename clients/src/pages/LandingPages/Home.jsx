@@ -1,29 +1,28 @@
 import { FlipWords } from "../../components/ui/FlipWords.tsx";
 import Images from "../../assets/imgs/landing-image.svg";
-import { useState, useEffect } from "react";
 
 const Home = () => {
   const words = ["Future", "Career", "Goals", "Dreams", "Jobs"];
 
-  const [authData, setAuthData] = useState({})
+  // const [authData, setAuthData] = useState({})
 
-  // Retrieving data from Local Storage and Session Storage
-  const retrieveData = () => {
-    const storedData = sessionStorage.getItem('auth');
-    console.log("INI DARI HOME", JSON.parse(storedData))
-    if (storedData) {
-      setAuthData(JSON.parse(storedData));
-    }
-  };
+  // // Retrieving data from Local Storage and Session Storage
+  // const retrieveData = () => {
+  //   const storedData = sessionStorage.getItem('auth');
+  //   console.log("INI DARI HOME", JSON.parse(storedData))
+  //   if (storedData) {
+  //     setAuthData(JSON.parse(storedData));
+  //   }
+  // };
   
-  useEffect(() => {
-    retrieveData();
-  }, []);
+  // useEffect(() => {
+  //   retrieveData();
+  // }, []);
 
   return (
     <div className="h-[40rem] flex justify-center mx-auto">
       <div className="text-[40px] mx-auto font-bold tracking-tight mt-24 relative opacity-85">
-      Empowering Your {authData && authData.address ? authData.address : "NO DATA"}
+      Empowering Your
         <span className="bg-gradient-to-r from-blue-500 via-purple-700 to-red-500 text-transparent bg-clip-text ml-2">
           Career Journey
         </span>

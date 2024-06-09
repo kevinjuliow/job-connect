@@ -1,29 +1,50 @@
-// import React from 'react'
+import PropTypes from "prop-types";
 
-// const JobCard = ({ data }) => {
-//   // description
-//   // job_type
-//   // position
-//   // salary
-//   // logo (from company)
-//   // name
-//   // const { logo, name, position, jobType, salary, description } = data
+const JobCard = (props) => {
+  // logo (from company)
+  // position (from jobs)
+  // companyName (from company)
+  // companyAddress (from company)
+  // salary (from jobs)
+  // jobType (from jobs)
   
-//   return (
-//   <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-//       <a href="#">
-//           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-//       </a>
-//       <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-//       <a href="#" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-//           Read more
-//           <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-//               <path stroke="currentColor" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-//           </svg>
-//       </a>
-//   </div>
+  // const { jobId, logo, position, companyName, companyAddress, salary, jobType } = props.data
+  
+  return (
+    <div style={{ boxShadow: '0 0 9px 1px rgba(0, 0, 0, .3)' }}  className="p-6 bg-white rounded-lg dark:bg-white dark:border-gray-700 w-[340px] mx-4 my-4">
+      {/* <div className="flex justify-between">
+        <img src={logo} className="w-[60px]" alt="" />
+        <div>
+          <svg className="w-[24px] cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
+          </svg>
+        </div>
+      </div>
+      <p className="text-2xl font-bold">{position}</p>
+      <p className="text-lg mt-1 font-semibold">{companyName}</p>
+      <p className="font-light">{companyAddress}</p>
+      <p className="my-3 text-lg">Salary rate ${salary}</p>
+      <div className="flex justify-between items-center mt-4">
+        <p className="py-1 px-2 w-[100px] text-center border border-purple-700 rounded-lg text-purple-700">{jobType}</p>
+        <a href={`/job/view/${jobId}`} className="cursor-pointer focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">View detail</a>
+      </div> */}
+    </div>
+  )
+}
 
-//   )
-// }
+// Define the prop types
+JobCard.propTypes = {
+  data: PropTypes.shape({
+    jobId: PropTypes.string.isRequired,
+    logo: PropTypes.string.isRequired,
+    position: PropTypes.string.isRequired,
+    companyName: PropTypes.string.isRequired,
+    companyAddress: PropTypes.string.isRequired,
+    salary: PropTypes.number.isRequired,
+    jobType: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
-// export default JobCard
+export default JobCard
+
+

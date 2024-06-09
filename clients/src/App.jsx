@@ -4,6 +4,7 @@ import LandingPage from "./pages/LandingPages/LandingPage"
 import { useContext, useEffect } from "react";
 import { AppContext } from "./context/ContextProvider";
 import Explore from "./pages/ExplorePages/Explore";
+import Profile from "./pages/ProfilePages/Profile";
 
 function App() {
   const { auth } = useContext(AppContext)
@@ -21,7 +22,8 @@ function App() {
         <Routes>
           <Route path="/" element={isAuthenticated? <LandingPage /> : <Explore />} />
           <Route path="/login" element={<Login/>}/>
-          {/* <Route path="/explore" element={<Explore/>} /> */}
+          <Route path="/explore" element={<Explore/>} />
+          <Route path="/profile" element={<Profile/>} />
         </Routes>
       </Router>
     </>

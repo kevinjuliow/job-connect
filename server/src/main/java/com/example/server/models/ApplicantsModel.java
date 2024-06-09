@@ -22,10 +22,10 @@ public class ApplicantsModel {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column()
     private String password;
 
-    @Column(length = 512, nullable = false)
+    @Column(length = 512)
     private String full_name;
 
     @Column(length = 512)
@@ -34,11 +34,14 @@ public class ApplicantsModel {
     @Column
     private LocalDate birth_date;
 
-    @Column(nullable = false, length = 20)
+    @Column(length = 20)
     private String phone;
 
     @Column
     private String cv;
+
+    @Column
+    private String logo;
 
 //    @ManyToMany
 //    @JoinTable(

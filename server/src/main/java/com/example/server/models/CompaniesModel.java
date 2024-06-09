@@ -13,22 +13,22 @@ public class CompaniesModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_company;
 
-    @Column(nullable = false)
+    @Column()
     private String name;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column()
     private String password;
 
     @Column(length = 512)
     private String address;
 
-    @Column(nullable = false)
+    @Column()
     private String country;
 
-    @Column(nullable = false, length = 20)
+    @Column(length = 20)
     private String phone;
 
     @Column()
