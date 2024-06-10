@@ -21,7 +21,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={isAuthenticated? <LandingPage /> : <Explore />} />
+          <Route path="/" element={isAuthenticated ? <LandingPage /> : <Explore />} />
           <Route path="/login" element={<Login/>}/>
           <Route path="/signup" element={<Signup/>}/>
           <Route path="/explore" element={<Explore/>} />

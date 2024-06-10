@@ -21,7 +21,7 @@ const Nav = () => {
     }
   };
 
-  const logout = () =>{
+  const logout = () => {
     sessionStorage.clear()
   }
 
@@ -162,8 +162,6 @@ const Nav = () => {
           )
           }
           </div>
-          
-        
       </div>
     </nav>
   );

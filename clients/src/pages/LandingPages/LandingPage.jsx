@@ -12,11 +12,11 @@ const LandingPage = () => {
   return (
     <>
       <Nav/>
-     <div id="home-page" className="flex items-center px-4 relative w-[1024px] mx-auto mt-20 flex-col gap-20 border border-red-600">
-      <Home/>
-      <Reviews/>
-      <About />
-    </div>
+      <div id="home-page" className="flex items-center px-4 relative w-[1024px] mx-auto mt-20 flex-col gap-20 border border-red-600">
+        <Home/>
+        <Reviews/>
+        <About />
+      </div>
     </>
    
   )

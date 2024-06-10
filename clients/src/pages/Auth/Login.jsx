@@ -14,8 +14,8 @@ const Login = () => {
     setIsVerifying(true);
     try {
       const response = await axios
-        // .post("http://localhost:8000/api/jobconnect/auth", {
-        .post("https://s0217920-8000.asse.devtunnels.ms/api/jobconnect/auth", {
+        .post("http://localhost:8000/api/jobconnect/auth", {
+        // .post("https://s0217920-8000.asse.devtunnels.ms/api/jobconnect/auth", {
           email: document.querySelector("#email").value,
           password: document.querySelector("#password").value,
         });
