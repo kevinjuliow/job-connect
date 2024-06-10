@@ -30,6 +30,12 @@ public class ApplicantsService {
         throw new UserNotFound("Not Found");
     }
 
+    public ApplicantsModel GETByEmail(String email) throws UserNotFound {
+        ApplicantsModel foundUser = applicantsRepo.findApplicantsModelByEmail(email);
+        if (foundUser != null) return foundUser  ;
+        else throw new UserNotFound("Not Found");
+    }
+
     public ApplicantsModel POST(ApplicantsModel applicantsModel){
         String encryptedPassword = passwordEncoder.encode(applicantsModel.getPassword());
         applicantsModel.setPassword(encryptedPassword);

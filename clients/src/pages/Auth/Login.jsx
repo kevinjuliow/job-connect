@@ -5,7 +5,6 @@ import axios from "axios";
 import { toast, ToastContainer, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useGoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   const [isVerifying, setIsVerifying] = useState(false);
@@ -111,7 +110,7 @@ const Login = () => {
       />
 
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 ">
-        <div className="sm:mx-auto border border-gray-300  w-[500px] h-[600px] p-20 rounded-xl bg-white backdrop-blur-md bg-opacity-85 shadow-[0px_0px_10px_rgba(0,0,0,0.4)]">
+        <div className="sm:mx-auto border border-gray-300  w-[500px] h-[600px] p-20 rounded-xl bg-white backdrop-blur-md bg-opacity-85 border border-gray-300">
           {isVerifying ? (
             <div className="w-full h-full flex items-center justify-center">
               <Spinner />
@@ -170,7 +169,7 @@ const Login = () => {
                 <div className="w-full flex justify-center">
                   <button
                     onClick={onSubmit}
-                    className="w-full text-white bg-blue-500 py-2 rounded-md hover:opacity-85"
+                    className="w-full text-white dark:bg-zinc-800 py-2 rounded-md hover:opacity-85"
                   >
                     Login
                   </button>

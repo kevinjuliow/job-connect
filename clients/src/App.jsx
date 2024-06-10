@@ -5,6 +5,7 @@ import { useContext, useEffect } from "react";
 import { AppContext } from "./context/ContextProvider";
 import Explore from "./pages/ExplorePages/Explore";
 import Profile from "./pages/ProfilePages/Profile";
+import Signup from "./pages/Auth/Signup"
 
 function App() {
   const { auth } = useContext(AppContext)
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={isAuthenticated? <LandingPage /> : <Explore />} />
           <Route path="/login" element={<Login/>}/>
+          <Route path="/signup" element={<Signup/>}/>
           <Route path="/explore" element={<Explore/>} />
           <Route path="/profile" element={<Profile/>} />
         </Routes>

@@ -31,6 +31,17 @@ public class ApplicantsController {
         return ResponseEntity.status(200).body(new ApplicantDtos("OK", 200, applicantsLists));
     }
 
+    @GetMapping("/email/{email}")
+    public ResponseEntity<?> GETByEmail(@PathVariable String email) {
+        try {
+            ApplicantsModel existsApplicant = applicantsService.GETByEmail(email);
+            List<ApplicantsModel> applicantList = Collections.singletonList(existsApplicant);
+            return ResponseEntity.status(200).body(new ApplicantDtos("OK", 200, applicantList));
+        } catch (UserNotFound err) {
+            return ResponseEntity.status(404).body(new ApplicantDtos("NOT FOUND", 404, null));
+        }
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> GETByID(@PathVariable Integer id) {
         try {
