@@ -1,5 +1,6 @@
 import { FlipWords } from "../../components/ui/FlipWords.tsx";
 import Images from "../../assets/imgs/landing-image.svg";
+import {Vortex} from "../../components/ui/Vortex.tsx"
 
 const Home = () => {
   const words = ["Future", "Career", "Goals", "Dreams", "Jobs"];
@@ -19,8 +20,19 @@ const Home = () => {
   //   retrieveData();
   // }, []);
 
+  const onGetStarted = () => {
+    window.location.href = "/signup"
+  }
+
   return (
-    <div className="h-[40rem] flex justify-center mx-auto">
+    // <div className="h-[40rem] flex justify-center mx-auto">
+       <Vortex
+        backgroundColor="white"
+        rangeY={500}
+        particleCount={500}
+        baseHue={200}
+        className="h-[40rem] flex justify-center mx-auto"
+      > 
       <div className="text-[40px] mx-auto font-bold tracking-tight mt-24 relative opacity-85">
       Empowering Your
         <span className="bg-gradient-to-r from-blue-500 via-purple-700 to-red-500 text-transparent bg-clip-text ml-2">
@@ -42,10 +54,11 @@ const Home = () => {
             created by the founders of Google and Facebook. The ideal beginning
             stage for your next project.
           </p>
-          <button className="bg-purple-600 text-white w-40 h-10 rounded-lg cursor-pointer hover:shadow-[5px_5px_10px_rgba(0,0,0,0.8)] hover:mr-4 hover:transition-[.5s] transition-[.5s]">Get Started</button>
+          <button onClick={onGetStarted} className="bg-purple-600 text-white w-40 h-10 rounded-lg cursor-pointer hover:shadow-[5px_5px_10px_rgba(0,0,0,0.8)] hover:mr-4 hover:transition-[.5s] transition-[.5s]">Get Started</button>
         </div>
       </div>
-    </div>
+      </Vortex>
+    // </div>
   );
 };
 

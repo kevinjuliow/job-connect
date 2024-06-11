@@ -62,6 +62,12 @@ public class ApplicantsController {
         List<ApplicantsModel> applicantList = Collections.singletonList(addedApplicants);
         return ResponseEntity.status(201).body(new ApplicantDtos("CREATED", 201, applicantList));
     }
+    @PostMapping("/email")
+    public ResponseEntity<?> POSTByEmail(@RequestBody @Valid ApplicantsModel body) {
+        ApplicantsModel addedApplicants = applicantsService.POSTByEmail(body);
+        List<ApplicantsModel> applicantList = Collections.singletonList(addedApplicants);
+        return ResponseEntity.status(201).body(new ApplicantDtos("CREATED", 201, applicantList));
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> PUT(@RequestBody @Valid ApplicantsModel body, @PathVariable Integer id, Errors e) {

@@ -1,4 +1,3 @@
-import React from "react";
 import { InfiniteMovingCards } from "../../components/ui/InfiniteMovingCards.tsx";
 import Reviewer1 from "../../assets/imgs/reviewer1.jpeg"
 import Reviewer2 from "../../assets/imgs/reviewer2.jpeg"
@@ -45,7 +44,7 @@ const Reviews = () => {
     },
   ];
   return (
-    <div id="reviews-page" className="h-[40rem] bg-white flex flex-col items-center justify-center border border-red-600">
+    <div id="reviews-page" className="h-[40rem] bg-white flex flex-col items-center justify-center">
       <h1 className="text-center font-bold text-3xl mb-[24px] opacity-90">Reviews</h1>
       <InfiniteMovingCards
         items={testimonials}

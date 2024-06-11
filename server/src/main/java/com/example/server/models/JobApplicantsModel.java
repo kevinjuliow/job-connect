@@ -23,7 +23,8 @@ public class JobApplicantsModel {
     @JoinColumn(name = "id_applicant")
     private ApplicantsModel applicantsModel;
 
-    private String status ;
+    @Column
+    private String status = "waiting";
 
     @Column(name = "apply_date")
     private LocalDate applyDate;

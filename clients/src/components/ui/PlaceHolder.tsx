@@ -161,7 +161,7 @@ export function PlaceholdersAndVanishInput({
   return (
     <form
       className={cn(
-        "w-full relative max-w-[1024px] mx-auto bg-white h-12 rounded-full overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),_0px_1px_0px_0px_rgba(25,28,33,0.02),_0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200",
+        "w-full relative max-w-[1024px] mx-auto bg-white pr-8 h-12 rounded-full overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),_0px_1px_0px_0px_rgba(25,28,33,0.02),_0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200",
         value && "bg-gray-50"
       )}
       onSubmit={handleSubmit}
@@ -205,7 +205,7 @@ export function PlaceholdersAndVanishInput({
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="text-gray-300 h-4 w-4"
+          className="text-gray-300 h-4 w-4 cursor-pointer"
         >
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
           <motion.path

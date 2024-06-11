@@ -9,7 +9,7 @@ export const JobList = [
     companyName: 'Google, Inc',
     companyAddress: 'Mountain View, California, United States',
     salary: 1200,
-    jobType: 'REMOTE',
+    jobType: 'ON-SITE',
   },
   {
     jobId: 2,
@@ -27,7 +27,7 @@ export const JobList = [
     companyName: 'Google, Inc',
     companyAddress: 'Mountain View, California, United States',
     salary: 1200,
-    jobType: 'REMOTE',
+    jobType: 'HYBRID',
   },
   {
     jobId: 4,

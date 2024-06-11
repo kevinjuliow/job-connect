@@ -8,14 +8,13 @@ import { useGoogleLogin } from "@react-oauth/google";
 
 const Login = () => {
   const [isVerifying, setIsVerifying] = useState(false);
-  const [userData, setUserData] = useState(null);
 
   const onSubmit = async () => {
     setIsVerifying(true);
     try {
       const response = await axios
-        .post("http://localhost:8000/api/jobconnect/auth", {
-        // .post("https://s0217920-8000.asse.devtunnels.ms/api/jobconnect/auth", {
+        // .post("http://localhost:8000/api/jobconnect/auth", {
+        .post("https://s0217920-8000.asse.devtunnels.ms/api/jobconnect/auth", {
           email: document.querySelector("#email").value,
           password: document.querySelector("#password").value,
         });
@@ -29,9 +28,9 @@ const Login = () => {
       sessionStorage.setItem("auth", JSON.stringify(user));
 
       if ("id_applicant" in user) {
-        window.location.href = "/explore";
+        window.location.href = "/applicants/explore";
       } else if ("id_company" in user) {
-        window.location.href = "/reviews";
+        window.location.href = "/company";
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -69,16 +68,53 @@ const Login = () => {
 
   const login = useGoogleLogin({
     onSuccess: async (token) => {
-      const response = await axios.get(
-        "https://www.googleapis.com/oauth2/v1/userinfo",
-        {
-          headers: {
-            Authorization: `Bearer ${token.access_token}`,
-          },
+      try{
+        setIsVerifying(true);
+        const responseGoogle = await axios.get(
+          "https://www.googleapis.com/oauth2/v1/userinfo",
+          {
+            headers: {
+              Authorization: `Bearer ${token.access_token}`,
+            },
+          }
+        );
+        const response = await axios
+          // .post("https://s0217920-8000.asse.devtunnels.ms/api/applicant/email/" + responseGoogle.data.email, {
+          .get("https://s0217920-8000.asse.devtunnels.ms/api/jobconnect/applicants/email/" + responseGoogle.data.email);
+  
+  
+    
+        sessionStorage.setItem("auth", JSON.stringify(response.data.data[0]));
+        setIsVerifying(false);
+        window.location.href = "/applicants/explore"
+      }catch(error){
+        if (error.response && error.response.status === 404) {
+        setIsVerifying(true);
+        const responseGoogle = await axios.get(
+          "https://www.googleapis.com/oauth2/v1/userinfo",
+          {
+            headers: {
+              Authorization: `Bearer ${token.access_token}`,
+            },
+          }
+        );
+  
+        const User = await {
+          "email" : responseGoogle.data.email , 
+          "full_name" : responseGoogle.data.name , 
+          "logo" : responseGoogle.data.picture
         }
-      );
-      setUserData(response.data);
-      
+        const response = await axios
+          // .post("https://s0217920-8000.asse.devtunnels.ms/api/jobconnect/applicants/email/" + responseGoogle.data.email, {
+          .post("https://s0217920-8000.asse.devtunnels.ms/api/jobconnect/applicants/email" , User);
+  
+        // sessionStorage.setItem("auth", JSON.stringify(response.data));
+        console.log(response.data);
+        sessionStorage.setItem("auth", JSON.stringify(response.data.data[0]));
+        setIsVerifying(false);
+        window.location.href = "/applicants/explore";
+      }
+    }
     },
   });
 
@@ -110,7 +146,7 @@ const Login = () => {
       />
 
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 ">
-        <div className="sm:mx-auto border border-gray-300  w-[500px] h-[600px] p-20 rounded-xl bg-white backdrop-blur-md bg-opacity-85 border border-gray-300">
+        <div className="sm:mx-auto  w-[500px] h-[600px] p-20 rounded-xl bg-white backdrop-blur-md bg-opacity-85 border border-gray-300">
           {isVerifying ? (
             <div className="w-full h-full flex items-center justify-center">
               <Spinner />
@@ -140,7 +176,7 @@ const Login = () => {
                       type="email"
                       autoComplete="email"
                       required
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full pl-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -161,7 +197,7 @@ const Login = () => {
                       type="password"
                       autoComplete="current-password"
                       required
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full pl-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>

@@ -24,7 +24,7 @@ public class JobsModel {
     private String position;
 
     @Lob
-    @Column()
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
 
     @Column()

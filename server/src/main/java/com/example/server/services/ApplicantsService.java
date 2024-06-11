@@ -42,6 +42,12 @@ public class ApplicantsService {
         return applicantsRepo.save(applicantsModel);
     }
 
+    public ApplicantsModel POSTByEmail (ApplicantsModel applicantsModel){
+        return applicantsRepo.save(applicantsModel);
+    }
+
+
+
     public ApplicantsModel PUTByID (ApplicantsModel applicantsModel , Integer id) throws UserNotFound {
         ApplicantsModel existsApplicant = applicantsRepo.findById(id).orElseThrow(()->new UserNotFound("Not Found"));
         if (applicantsModel.getEmail() != null && !applicantsModel.getEmail().isEmpty()) existsApplicant.setEmail(applicantsModel.getEmail());

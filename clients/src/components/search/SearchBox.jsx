@@ -1,7 +1,11 @@
+import { useContext } from 'react';
 import wave from '../../assets/imgs/waveEXplore.svg'
 import { PlaceholdersAndVanishInput } from '../ui/PlaceHolder'
+import { AppContext } from '../../context/ContextProvider';
 
-const searchBox = () => {
+const SearchBox = () => {
+  const { setSearchQuery  } = useContext(AppContext);
+
   const placeholders = [
     "Software Engineer",
     "Google Corp",
@@ -9,14 +13,16 @@ const searchBox = () => {
     "Data Analyst",
     "Microsoft",
   ];
+
   const handleChange = (e) => {
-    console.log(e.target.value);
+    setSearchQuery(e.target.value);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
     console.log("submitted");
   };
+
   return (
     <div className="h-80 w-full overflow-y-hidden mt-[64px] bg-black flex items-center"
       style={{
@@ -32,7 +38,7 @@ const searchBox = () => {
         onSubmit={onSubmit}
       />
     </div>
-  )
+  );
 }
 
-export default searchBox
+export default SearchBox;
