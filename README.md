@@ -45,7 +45,7 @@ Job-Connect is a comprehensive job seeker website that bridges the gap between a
         ```
     - Configure your database settings in `application.properties`:
         ```properties
-        spring.datasource.url=jdbc:mysql://localhost:3306/jobconnect
+        spring.datasource.url=jdbc:mysql://localhost:3306/job_connect
         spring.datasource.username=root
         spring.datasource.password=yourpassword
         spring.jpa.hibernate.ddl-auto=update
@@ -133,9 +133,7 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 
 Thanks to these wonderful people for their contributions:
 
-<a href="https://github.com/OWNER/REPO/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=OWNER/REPO" />
-</a>
+[![Contributors](https://contrib.rocks/image?repo=kevinjuliow/job-connect)](https://github.com/kevinjuliow/job-connect/graphs/contributors)
 
 ## License
 
