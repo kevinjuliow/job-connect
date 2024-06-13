@@ -35,7 +35,7 @@ const Home = () => {
       > 
       <div className="text-[40px] mx-auto font-bold tracking-tight mt-24 relative opacity-85">
       Empowering Your
-        <span className="bg-gradient-to-r from-blue-500 via-purple-700 to-red-500 text-transparent bg-clip-text ml-2">
+        <span className="bg-gradient-to-r from-purple-500 via-purple-700 to-red-500 text-transparent bg-clip-text ml-2">
           Career Journey
         </span>
         <br />

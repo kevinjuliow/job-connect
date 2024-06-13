@@ -33,8 +33,9 @@ public class CompaniesController {
         return ResponseEntity.status(200).body(new CompanyDtos("OK", 200, companiesLists));
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<?> GETById(@PathVariable String name) {
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<?> GETByName(@PathVariable String name) {
         try {
             CompaniesModel existsCompany = companiesService.GETByName(name);
             List<CompaniesModel> companyList = Collections.singletonList(existsCompany);
@@ -42,6 +43,12 @@ public class CompaniesController {
         } catch (CompanyNotFound err) {
             return ResponseEntity.status(404).body(new CompanyDtos("NOT FOUND", 404, null));
         }
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> GETById(@PathVariable Integer id) {
+        CompaniesModel existsCompany = companiesService.GETByID(id).get();
+        List<CompaniesModel> companyList = Collections.singletonList(existsCompany);
+        return ResponseEntity.status(200).body(new CompanyDtos("OK", 200, companyList));
     }
 
     @PostMapping

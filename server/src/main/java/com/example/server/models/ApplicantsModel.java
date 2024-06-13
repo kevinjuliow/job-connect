@@ -37,7 +37,8 @@ public class ApplicantsModel {
     @Column(length = 20)
     private String phone;
 
-    @Column
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
     private String cv;
 
     @Column

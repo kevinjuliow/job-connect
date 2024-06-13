@@ -1,7 +1,6 @@
 package com.example.server.services;
 
 import com.example.server.exception.CompanyNotFound;
-import com.example.server.models.ApplicantsModel;
 import com.example.server.models.CompaniesModel;
 import com.example.server.repo.CompaniesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +31,10 @@ public class CompaniesService {
         throw new CompanyNotFound("Company isn't found");
     }
 
+    public Optional<CompaniesModel> GETByID(Integer id) {
+        return companiesRepo.findById(id);
+    }
+
     public CompaniesModel POST(CompaniesModel companiesModel){
         String encryptedPassword = passwordEncoder.encode(companiesModel.getPassword());
         companiesModel.setPassword(encryptedPassword);
@@ -41,6 +44,11 @@ public class CompaniesService {
     public CompaniesModel PUTByID(Integer id, CompaniesModel company) throws CompanyNotFound {
         CompaniesModel isExist = companiesRepo.findById(id)
                 .orElseThrow(() -> new CompanyNotFound("Cannot update. Company isn't found with id " + id));
+
+//        isExist.setAddress(company.getAddress());
+//        isExist.setLogo(company.getLogo());
+//        isExist.setPhone(company.getPhone());
+//        isExist.setWebsite(company.getWebsite());
         if (company.getName() != null && !company.getName().isEmpty()) { isExist.setName(company.getName()); }
         if (company.getEmail() != null && !company.getEmail().isEmpty()) { isExist.setEmail(company.getEmail()); }
         if (company.getPassword() != null && !company.getPassword().isEmpty()) {
@@ -52,7 +60,6 @@ public class CompaniesService {
         if (company.getPhone() != null && !company.getPhone().isEmpty()) { isExist.setPhone(company.getPhone()); }
         if (company.getLogo() != null && !company.getLogo().isEmpty()) { isExist.setLogo(company.getLogo()); }
         if (company.getWebsite() != null && !company.getWebsite().isEmpty()) { isExist.setWebsite(company.getWebsite()); }
-
         return companiesRepo.save(isExist);
     }
 

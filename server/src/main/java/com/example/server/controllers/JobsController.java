@@ -55,9 +55,11 @@ public class JobsController {
     public ResponseEntity<?> PUT (@RequestBody @Valid JobsModel body , @PathVariable Integer id , Errors e){
         if (e.hasErrors()) return ResponseEntity.status(400).body(new JobDtos("Bad Request" , 400 , null));
         try{
+            System.out.println(body);
             JobsModel updated = jobsService.PUTByID(body , id);
             List<JobsModel> jobLists = Collections.singletonList(updated);
-            return ResponseEntity.status(200).body(new JobDtos("OK", 200, jobLists));
+//            return ResponseEntity.status(200).body(new JobDtos("OK", 200, jobLists));
+            return ResponseEntity.ok().body(jobLists);
         }catch (JobNotFound err){
             return ResponseEntity.status(404).body(new JobDtos("Not Found" , 404 , null));
         }
@@ -70,6 +72,14 @@ public class JobsController {
         }catch (JobNotFound err){
             return ResponseEntity.status(404).body(new JobDtos("Not Found" , 404 ,  null));
         }
+    }
+
+    @PostMapping("/coba/{id}")
+    public ResponseEntity<?> POSTCoba (@RequestBody @Valid JobsModel body , @PathVariable Integer id ,Errors e) throws JobNotFound {
+        if (e.hasErrors()) return ResponseEntity.status(400).body(new JobDtos("Bad Request" , 400 , null));
+        System.out.println(body.toString());
+        JobsModel updated = jobsService.PUTByID(body , id);
+        return ResponseEntity.ok().body(updated);
     }
 
 }

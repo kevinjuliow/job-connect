@@ -3,12 +3,14 @@ import { useContext, useEffect, useState } from "react";
 import PostedJobCard from "../../components/card/PostedJobCard";
 import { AppContext } from "../../context/ContextProvider";
 import Spinner from "../../components/loading/Spinner";
+import { log } from "three/examples/jsm/nodes/Nodes.js";
 
 const PostedJobs = () => {
   const [postedJobs, setPostedJobs] = useState([]);
   const { auth, setIsInDetail } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
+
 
   const [turnUpdate, setTurnUpdate] = useState(false);
   const [isInputDisabled, setIsInputDisabled] = useState(true);
@@ -18,18 +20,33 @@ const PostedJobs = () => {
     setSelectedJob(job);
     setIsInDetail(true);
   };
-  
+
+  const onDelete = () =>{
+    const del = async () =>{
+      const resp = await axios.delete("https://s0217920-8000.asse.devtunnels.ms/api/jobconnect/jobs/"+selectedJob.id_job)
+      const data = await resp.data
+
+      console.log("del" , data)
+    }
+    del() 
+    window.location.reload()
+  }
+
   const fetchData = async () => {
     try {
       const resp = await axios.get(
         "https://s0217920-8000.asse.devtunnels.ms/api/jobconnect/jobs"
       );
-  
+
+      console.log(resp.data.data);
+      const respdata = await resp.data.data;
       // Filter the jobs based on the id_company
-      const filteredJobs = resp.data.data.filter(
+      const filteredJobs = await respdata.filter(
         (job) => job.companiesModel.id_company === auth.id_company
       );
-  
+
+      console.log("Filter", filteredJobs);
+      console.log("INI DARI FETCHDATA", resp);
       // Update the state with the filtered jobs
       setPostedJobs(filteredJobs);
       setIsLoading(false);
@@ -41,8 +58,10 @@ const PostedJobs = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetchData()
+    fetchData();
   }, [auth.id_company]);
+
+
 
   const handleUpdate = () => {
     setTurnUpdate(!turnUpdate);
@@ -56,16 +75,16 @@ const PostedJobs = () => {
       const salary = document.querySelector("#salary").value;
       const description = document.querySelector("#description").value;
       const jobType = document.querySelector("#type").value;
-  
+
       const company_id = auth.id_company;
 
-      console.log(position)
-      console.log(salary)
-      console.log(description)
-      console.log(jobType)
-      console.log(company_id)
+      console.log(position);
+      console.log(salary);
+      console.log(description);
+      console.log(jobType);
+      console.log(company_id);
       const res = await axios.put(
-        `https://s0217920-8000.asse.devtunnels.ms/api/jobconnect/companies/${company_id}`,
+        `https://s0217920-8000.asse.devtunnels.ms/api/jobconnect/jobs/${selectedJob.id_job}`,
         {
           position: position,
           salary: salary,
@@ -73,13 +92,13 @@ const PostedJobs = () => {
           jobType: jobType,
         }
       );
-      
-      console.log('ahahaahaa', res.data);
-      
+      console.log("🚀 ~ onSubmit ~ res:", res);
+      console.log("INI RES", res);
+      window.location.reload()
       // Refresh the page by refetching the data
-      fetchData()
+      fetchData();
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -154,7 +173,7 @@ const PostedJobs = () => {
                         } dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                         placeholder={selectedJob.position}
                         pattern="^\d{5}(-\d{4})?$"
-                        // value={selectedJob.position}
+                        defaultValue={selectedJob.position}
                       />
                     </div>
                   </div>
@@ -215,7 +234,7 @@ const PostedJobs = () => {
                         } dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                         placeholder={selectedJob.salary}
                         pattern="^\d{5}(-\d{4})?$"
-                        value={selectedJob.salary}
+                        defaultValue={selectedJob.salary}
                       />
                     </div>
                   </div>
@@ -286,6 +305,7 @@ const PostedJobs = () => {
                       </button>
                     )}
                   </div>
+                  <button onClick={()=>onDelete()} className="mx-3 cursor-pointer focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
                 </div>
               </div>
             ) : (

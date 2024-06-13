@@ -19,7 +19,7 @@ const Profile = () => {
     setShowWarn(!showWarn);
   };
 
-  const handleSubmit = async () =>{
+  const handleSubmitUpdate = async () =>{
     const full_name = document.querySelector('#full_name').value;
     const birthDate = document.querySelector('#birthdate').value;
     const address = document.querySelector('#address').value;
@@ -27,25 +27,23 @@ const Profile = () => {
     const requestBody = {};
 
     if (full_name && full_name !== auth.full_name) {
-        requestBody.full_name = full_name;
+      requestBody.full_name = full_name;
     }
 
     if (birthDate && birthDate !== auth.birthDate) {
-        requestBody.birthDate = birthDate;
+      requestBody.birthDate = birthDate;
     }
 
     if (address && address !== auth.address) {
-        requestBody.address = address;
+      requestBody.address = address;
     }
 
     if (phone && phone !== auth.phone) {
-        requestBody.phone = phone;
+      requestBody.phone = phone;
     }
-
-
     
-   const resp = await axios.put("https://s0217920-8000.asse.devtunnels.ms/api/job_connect/applicants/" + auth.id_applicant , requestBody) 
-   console.log(resp.data)
+    const resp = await axios.put("https://s0217920-8000.asse.devtunnels.ms/api/job_connect/companies/" + auth.id_company, requestBody) 
+    console.log(resp.data)
   }
     
 
@@ -135,7 +133,7 @@ const Profile = () => {
                         ? `dark:placeholder-black`
                         : `dark-placeholder-gray-600`
                     } dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                    value={auth.full_name}
+                    defaultValue={auth.full_name}
                     pattern="^\d{5}(-\d{4})?$"
                   />
                 </div>
@@ -169,7 +167,7 @@ const Profile = () => {
                         ? `dark:placeholder-black`
                         : `dark-placeholder-gray-600`
                     } dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                    value={auth.birth_date}
+                    defaultValue={auth.birth_date}
                     pattern="^\d{5}(-\d{4})?$"
                   />
                 </div>
@@ -207,7 +205,7 @@ const Profile = () => {
                         ? `dark:placeholder-black`
                         : `dark-placeholder-gray-600`
                     } dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                    value={auth.phone}
+                    defaultValue={auth.phone}
                     pattern="^\d{5}(-\d{4})?$"
                   />
                 </div>
@@ -245,7 +243,7 @@ const Profile = () => {
                         ? `dark:placeholder-black`
                         : `dark-placeholder-gray-600`
                     } dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                    value={auth.address}
+                    defaultValue={auth.address}
                     pattern="^\d{5}(-\d{4})?$"
                   />
                 </div>
@@ -299,7 +297,7 @@ const Profile = () => {
                 )}
                 {turnUpdate && (
                   <button
-                    // onClick={handleSubmitUpdate}
+                    onClick={handleSubmitUpdate}
                     style={{ width: "100px" }}
                     type="button"
                     className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-500"

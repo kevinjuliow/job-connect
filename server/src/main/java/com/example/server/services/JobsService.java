@@ -37,10 +37,15 @@ public class JobsService {
 
     public JobsModel PUTByID (JobsModel jobsModel , Integer id) throws JobNotFound {
         JobsModel existsJobs = jobsRepo.findById(id).orElseThrow(()->new JobNotFound("Not Found"));
-        if (jobsModel.getPosition() != null && !jobsModel.getPosition().isEmpty()) existsJobs.setPosition(jobsModel.getPosition());
-        if (jobsModel.getDescription() != null && !jobsModel.getDescription().isEmpty()) existsJobs.setDescription(jobsModel.getDescription());
-        if (jobsModel.getSalary() != null) existsJobs.setSalary(jobsModel.getSalary());
-        if (jobsModel.getJobType() != null && !jobsModel.getJobType().isEmpty()) existsJobs.setJobType(jobsModel.getJobType());
+//        if (jobsModel.getPosition() != null && !jobsModel.getPosition().isEmpty()) existsJobs.setPosition(jobsModel.getPosition());
+//        if (jobsModel.getDescription() != null && !jobsModel.getDescription().isEmpty()) existsJobs.setDescription(jobsModel.getDescription());
+//        if (jobsModel.getSalary() != null) existsJobs.setSalary(jobsModel.getSalary());
+//        if (jobsModel.getJobType() != null && !jobsModel.getJobType().isEmpty()) existsJobs.setJobType(jobsModel.getJobType());
+
+        existsJobs.setPosition(jobsModel.getPosition());
+        existsJobs.setDescription(jobsModel.getDescription());
+        existsJobs.setJobType(jobsModel.getJobType());
+        existsJobs.setSalary(jobsModel.getSalary());
 
         return jobsRepo.save(existsJobs);
     }
