@@ -25,9 +25,9 @@ Job-Connect is a comprehensive job seeker website that bridges the gap between a
     ```
 
 2. **Set up the Front-end**:
-    - Navigate to the `frontend` directory:
+    - Navigate to the `client` directory:
         ```sh
-        cd frontend
+        cd clients
         ```
     - Install dependencies:
         ```sh
@@ -39,9 +39,9 @@ Job-Connect is a comprehensive job seeker website that bridges the gap between a
         ```
 
 3. **Set up the Back-end**:
-    - Navigate to the `backend` directory:
+    - Navigate to the `server` directory:
         ```sh
-        cd backend
+        cd server
         ```
     - Configure your database settings in `application.properties`:
         ```properties
