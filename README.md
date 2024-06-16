@@ -135,6 +135,3 @@ Thanks to these wonderful people for their contributions:
 
 [![Contributors](https://contrib.rocks/image?repo=kevinjuliow/job-connect)](https://github.com/kevinjuliow/job-connect/graphs/contributors)
 
-## License
-
-This project is licensed under the MIT License.
